@@ -15,10 +15,10 @@ public class ConnectionFactory {
     private final static String dbDriver = "org.postgresql.Driver";
     private final static String protocol = "jdbc:postgresql";    
     private final static String host = "localhost";
-    private final static String port = "5432";
+    private final static String port = "5433";
     private final static String database = "address";
     private final static String user = "postgres";
-    private final static String pass = "postgres";
+    private final static String pass = "root";
     
     private static String getUrl() {
         return String.format("%s://%s:%s/%s",protocol, host, port, database);

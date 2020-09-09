@@ -75,6 +75,13 @@ public class PersonModel extends Model{
 
     public void setBirthday(LocalDate birthday) {
         this.birthday = birthday;
-    }    
+    }
 
+    @Override
+    public String toString() {
+        return String.format("id: %s\nnome: %s %s\nrua: %s\ncidade: %s\ncep: %d\nnascimento: %s", id, firstName, lastName, street, city, postalCode, birthday);
+    }
+    
+    
+    
 }
