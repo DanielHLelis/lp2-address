@@ -1,8 +1,8 @@
-package br.cefetmg.address;
+package br.cefetmg.address.models;
 
 import java.time.LocalDate;
 
-public class Person{
+public class PersonModel extends Model{
 
     private Long id;
     private String firstName;
@@ -11,16 +11,16 @@ public class Person{
     private Integer postalCode;
     private String city;
     private LocalDate birthday;
-
-    public Person() {
+    
+    public PersonModel() {
         this("", "");
     }
 
-    public Person(String firstName, String lastName) {
+    public PersonModel(String firstName, String lastName) {
         this.firstName = firstName;
         this.lastName = lastName;
     }
-
+    
     public Long getId() {
         return id;
     }
@@ -75,6 +75,6 @@ public class Person{
 
     public void setBirthday(LocalDate birthday) {
         this.birthday = birthday;
-    }
+    }    
 
 }
