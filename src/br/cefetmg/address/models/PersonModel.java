@@ -78,23 +78,8 @@ public class PersonModel extends Model {
     }
 
     @Override
-    public String toString() {
-        return String.format("[Person %s]: \"%s %s\"", id, firstName, lastName);
-    }
-
-    @Override
     public String repr() {
-        int idWidth = Math.max("id".length(), id.toString().length());
-        int fnWidth = Math.max("firstName".length(), firstName.toString().length());
-        int lnWidth = Math.max("lastName".length(), lastName.toString().length());
-        int stWidth = Math.max("street".length(), street.toString().length());
-        int pcWidth = Math.max("postalCode".length(), postalCode.toString().length());
-        int cityWidth = Math.max("city".length(), city.toString().length());
-        int bdWidth = Math.max("birthday".length(), birthday.toString().length());
-
-
-
-        return null;
+        return String.format("[Person %s]: \"%s %s\"", id, firstName, lastName);
     }
 
     @Override
