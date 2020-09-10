@@ -19,6 +19,10 @@ Esse repositório conterá o desenvolvimento da atividade realizado por:
 
 Para compilar e executar o código, basta utilizar a ferramenta já integrada à IDE utilizada. Importante verificar (principalmente no IntelliJ) se o SDK/JDK e a `Language Level` estão na versão certa.
 
+### SQL
+
+**Importante:** antes de rodar a aplicação pela primeira vez, será necessário criar o banco de dados baseando-se no script SQL presente em `sql`.
+
 ### Variáveis de ambiente
 
 Os seguintes parâmetros do DBMS (_Sistema Gerenciador de Bancos de Dados_) são modificáveis por variáveis de ambiente:
@@ -40,3 +44,7 @@ No IntelliJ, para modificar as variáveis de ambiente, recomenda-se modificar as
 ## Dependências
 
 - JDBC do PostgreSQL (já presente no repo)
+
+## Relatórios
+
+Os relatórios se situam na pasta `docs`, e estão em markdown.
