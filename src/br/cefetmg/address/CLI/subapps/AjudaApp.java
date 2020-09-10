@@ -1,11 +1,12 @@
-package br.cefetmg.address.CLI;
+package br.cefetmg.address.CLI.subapps;
 
+import br.cefetmg.address.CLI.CLIApp;
 import br.cefetmg.address.CLI.MainApp;
 
-public class AjudaApp implements CLIApp{
-    
+public class AjudaApp implements CLIApp {
+
     @Override
-    public void run(MainApp main, String[] params){
+    public void run(MainApp main, String[] params) {
         String ajudaStr = "Comandos:\n"
                 + "\th: ajuda"
                 + "\tq: sair"
@@ -14,7 +15,7 @@ public class AjudaApp implements CLIApp{
                 + "\tup: atualizar pessoa"
                 + "\tlp: listar pessoas"
                 + "\top: obter pessoa por id";
-        
+
         System.out.println(ajudaStr);
     }
 }

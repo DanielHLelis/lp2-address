@@ -1,11 +1,14 @@
-package br.cefetmg.address.CLI;
+package br.cefetmg.address.CLI.subapps;
 
+import br.cefetmg.address.CLI.CLIApp;
+import br.cefetmg.address.CLI.MainApp;
 import br.cefetmg.address.models.PersonModel;
-import br.cefetmg.address.persist.PersistException;
-import br.cefetmg.address.persist.PersonDBModel;
+import br.cefetmg.address.repository.RepositoryException;
+import br.cefetmg.address.repository.PersonRepository;
+
 import java.time.LocalDate;
 
-public class AdicionarPessoaApp implements CLIApp{
+public class AdicionarPessoaApp implements CLIApp {
 
     @Override
     public void run(MainApp main, String[] params) {
@@ -16,13 +19,13 @@ public class AdicionarPessoaApp implements CLIApp{
         person.setPostalCode(Integer.parseInt(main.query("CEP:")));
         person.setCity(main.query("Cidade:"));
         person.setBirthday(LocalDate.parse(main.query("Nascimento (formato ISO):")));
-        
+
         try {
-            PersonDBModel pdbm = new PersonDBModel();
+            PersonRepository pdbm = new PersonRepository();
             pdbm.insert(person);
-        } catch(PersistException ex){
+        } catch (RepositoryException ex) {
             System.out.println(ex.getStackTrace());
         }
     }
-    
+
 }

@@ -1,8 +1,10 @@
-package br.cefetmg.address.CLI;
+package br.cefetmg.address.CLI.subapps;
 
+import br.cefetmg.address.CLI.CLIApp;
+import br.cefetmg.address.CLI.MainApp;
 import br.cefetmg.address.models.PersonModel;
-import br.cefetmg.address.persist.PersistException;
-import br.cefetmg.address.persist.PersonDBModel;
+import br.cefetmg.address.repository.RepositoryException;
+import br.cefetmg.address.repository.PersonRepository;
 
 public class ObterPessoaApp implements CLIApp {
 
@@ -11,7 +13,7 @@ public class ObterPessoaApp implements CLIApp {
         Long id = Long.parseLong(main.query("Id:"));
 
         try {
-            PersonDBModel pdbm = new PersonDBModel();
+            PersonRepository pdbm = new PersonRepository();
             PersonModel person = pdbm.getById(id);
 
             if (person == null) {
@@ -20,7 +22,7 @@ public class ObterPessoaApp implements CLIApp {
             }
 
             System.out.println(person);
-        } catch (PersistException ex) {
+        } catch (RepositoryException ex) {
             System.out.println(ex.getStackTrace());
         }
     }
