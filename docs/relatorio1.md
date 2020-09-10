@@ -32,14 +32,9 @@ Contém a única responsabilidade de representar os dados e lógicas de negócio
 
 Herda da classe `Model`.
 
-#### Princípios aderidos
-
-- Responsabilidade única
-- Liskov
-
 ## `br.cefetmg.address.repository`
 
-Isola a responsabilidade de persistência dos modelos, seguindo um padrão semelhante ao _façade_.
+Isola a responsabilidade de persistência dos modelos, seguindo um padrão semelhante ao _facade_.
 
 ### `ConnectionFactory`
 
@@ -57,7 +52,7 @@ Exceção designada a qualquer problema durante o processo de persistência.
 
 Classe responsável pelo gerenciamento da persistência do modelo `PersonModel`.
 
-Implementa a interface `Repository`.
+Implementa a _interface_ `Repository`.
 
 ## `br.cefetmg.address.utils`
 
@@ -75,10 +70,12 @@ Define uma sub-aplicação/comando de CLI.
 
 ### `MainApp`
 
-Classe principal da CLI, responsável pelo gerenciamento da entrada e chamada dos `subapps`. 
+Ponto de entrada da CLI, responsável pela chamada dos `subapps`. 
 
-Também é o ponto de entrada da aplicação.
+### `AppIO`
+
+Singleton responsável pela intermediação das operações de IO da CLI.
 
 ### `br.cefetmg.address.CLI.subapps`
 
-As classes desse pacote implementam a interface `CLIApp`, logo todas gerenciam individualmente um dos comandos do menu.
+As classes desse pacote implementam a _interface_ `CLIApp`, logo todas gerenciam individualmente um dos comandos do menu.

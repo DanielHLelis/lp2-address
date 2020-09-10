@@ -2,7 +2,7 @@
 
 AddressApp é uma aplicação didática a ser usada no primeiro bimestre letivo durante as aulas de LP2 (Linguagens de Programação 2).
 
-Esse repositório conterá o desenvolvimento da atividade realizado por:
+Esse repositório conterá o desenvolvimento da atividade realizada por:
 
 - Daniel H. Lelis
 - Ana Luisa
@@ -10,7 +10,7 @@ Esse repositório conterá o desenvolvimento da atividade realizado por:
 ## Requisitos
 
 - Java 14+
-  - Essa é a versão alvo do Java, mas está sendo evitado de se usar recursos anteriores ao Java 9
+  - Essa é a versão alva\o do Java, mas está sendo evitado o uso recursos anteriores ao Java 9
 - Netbeans 11+
   - IntelliJ também funcionará
 - PostgreSQL 12
@@ -39,7 +39,7 @@ No Netbeans, para modificar as variáveis de ambiente, recomenda-se executá-lo 
 
 #### IntelliJ
 
-No IntelliJ, para modificar as variáveis de ambiente, recomenda-se modificar as configurações de `Run & Build` do projeto.
+No IntelliJ, para modificar as variáveis de ambiente, recomenda-se alterar as configurações de `Run & Build` do projeto.
 
 ## Dependências
 
