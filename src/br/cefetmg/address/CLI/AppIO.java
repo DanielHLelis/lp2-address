@@ -1,29 +1,23 @@
-package br.cefetmg.address;
+package br.cefetmg.address.CLI;
 
 import java.io.InputStream;
-import java.io.OutputStream;
 import java.io.PrintStream;
 import java.nio.charset.StandardCharsets;
 import java.util.Scanner;
 
 public class AppIO {
+  private static AppIO instance;
   private Scanner scanner;
   private PrintStream out;
   private InputStream in;
 
-  private static AppIO instance;
-
-  private AppIO(InputStream in, PrintStream out){
+  private AppIO(InputStream in, PrintStream out) {
     this.setOut(out);
     this.setIn(in);
   }
 
-  public boolean hasInstance(){
-    return instance != null;
-  }
-
-  public static AppIO getInstance(){
-    if(instance == null){
+  public static AppIO getInstance() {
+    if (instance == null) {
       return getInstance(System.in, System.out);
     }
 
@@ -31,8 +25,20 @@ public class AppIO {
   }
 
   public static AppIO getInstance(InputStream in, PrintStream out) {
-    instance = new AppIO(in, out);
+    if (instance == null) {
+      instance = new AppIO(in, out);
+    }
+
+    if (in != instance.in || out != instance.out) {
+      instance.setIn(in);
+      instance.setOut(out);
+    }
+
     return instance;
+  }
+
+  public boolean hasInstance() {
+    return instance != null;
   }
 
   public String query(String question) {
@@ -48,7 +54,7 @@ public class AppIO {
     return out;
   }
 
-  private void setOut(PrintStream out) {
+  public void setOut(PrintStream out) {
     this.out = out;
   }
 
@@ -56,7 +62,7 @@ public class AppIO {
     return in;
   }
 
-  private void setIn(InputStream in) {
+  public void setIn(InputStream in) {
     this.in = in;
     this.scanner = new Scanner(this.in, StandardCharsets.UTF_8);
   }

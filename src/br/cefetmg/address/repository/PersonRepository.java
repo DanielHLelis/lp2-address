@@ -13,165 +13,165 @@ import java.util.logging.Logger;
 
 public class PersonRepository implements Repository<PersonModel> {
 
-    private PersonModel resultSetToPerson(ResultSet rs) throws SQLException {
-        PersonModel person = new PersonModel();
-        person.setId(rs.getLong("id"));
-        person.setFirstName(rs.getString("firstname"));
-        person.setLastName(rs.getString("lastname"));
-        person.setStreet(rs.getString("street"));
-        person.setPostalCode(rs.getInt("postalcode"));
-        person.setCity(rs.getString("city"));
-        person.setBirthday(rs.getDate("birthday").toLocalDate());
+  private PersonModel resultSetToPerson(ResultSet rs) throws SQLException {
+    PersonModel person = new PersonModel();
+    person.setId(rs.getLong("id"));
+    person.setFirstName(rs.getString("firstname"));
+    person.setLastName(rs.getString("lastname"));
+    person.setStreet(rs.getString("street"));
+    person.setPostalCode(rs.getInt("postalcode"));
+    person.setCity(rs.getString("city"));
+    person.setBirthday(rs.getDate("birthday").toLocalDate());
 
-        return person;
+    return person;
+  }
+
+  @Override
+  public void insert(PersonModel person) throws RepositoryException {
+    try {
+      if (person == null) {
+        throw new RepositoryException("Entidade não pode ser nula.");
+      }
+
+      Connection connection = ConnectionFactory.getConnection();
+
+      String sql = "INSERT INTO person (firstName, lastName, street, postalcode, city, birthday) VALUES(?,?,?,?,?,?) RETURNING id";
+
+      PreparedStatement pstmt = connection.prepareStatement(sql);
+      pstmt.setString(1, person.getFirstName());
+      pstmt.setString(2, person.getLastName());
+      pstmt.setString(3, person.getStreet());
+      pstmt.setInt(4, person.getPostalCode());
+      pstmt.setString(5, person.getCity());
+      pstmt.setDate(6, java.sql.Date.valueOf(person.getBirthday()));
+
+      ResultSet rs = pstmt.executeQuery();
+
+      if (rs.next()) {
+        Long id = rs.getLong("id");
+        person.setId(id);
+      }
+
+      rs.close();
+      pstmt.close();
+      connection.close();
+
+    } catch (ClassNotFoundException | SQLException ex) {
+      Logger.getLogger(PersonRepository.class.getName()).log(Level.SEVERE, null, ex);
+      throw new RepositoryException(ex);
     }
+  }
 
-    @Override
-    public void insert(PersonModel person) throws RepositoryException {
-        try {
-            if (person == null) {
-                throw new RepositoryException("Entidade não pode ser nula.");
-            }
+  @Override
+  public void update(PersonModel person) throws RepositoryException {
+    try {
+      Connection connection = ConnectionFactory.getConnection();
 
-            Connection connection = ConnectionFactory.getConnection();
+      String sql = "UPDATE person "
+              + "   SET firstname = ?, "
+              + "       lastname = ?, "
+              + "       street = ?, "
+              + "       postalcode = ?, "
+              + "       city = ?, "
+              + "       birthday = ? "
+              + " WHERE id = ?;";
 
-            String sql = "INSERT INTO person (firstName, lastName, street, postalcode, city, birthday) VALUES(?,?,?,?,?,?) RETURNING id";
+      PreparedStatement pstmt = connection.prepareStatement(sql);
 
-            PreparedStatement pstmt = connection.prepareStatement(sql);
-            pstmt.setString(1, person.getFirstName());
-            pstmt.setString(2, person.getLastName());
-            pstmt.setString(3, person.getStreet());
-            pstmt.setInt(4, person.getPostalCode());
-            pstmt.setString(5, person.getCity());
-            pstmt.setDate(6, java.sql.Date.valueOf(person.getBirthday()));
+      pstmt.setString(1, person.getFirstName());
+      pstmt.setString(2, person.getLastName());
+      pstmt.setString(3, person.getStreet());
+      pstmt.setInt(4, person.getPostalCode());
+      pstmt.setString(5, person.getCity());
+      pstmt.setDate(6, java.sql.Date.valueOf(person.getBirthday()));
+      pstmt.setLong(7, person.getId());
+      pstmt.executeUpdate();
 
-            ResultSet rs = pstmt.executeQuery();
+      pstmt.close();
+      connection.close();
 
-            if (rs.next()) {
-                Long id = rs.getLong("id");
-                person.setId(id);
-            }
-
-            rs.close();
-            pstmt.close();
-            connection.close();
-
-        } catch (ClassNotFoundException | SQLException ex) {
-            Logger.getLogger(PersonRepository.class.getName()).log(Level.SEVERE, null, ex);
-            throw new RepositoryException(ex);
-        }
+    } catch (ClassNotFoundException | SQLException ex) {
+      Logger.getLogger(PersonRepository.class.getName()).log(Level.SEVERE, null, ex);
+      throw new RepositoryException(ex);
     }
+  }
 
-    @Override
-    public void update(PersonModel person) throws RepositoryException {
-        try {
-            Connection connection = ConnectionFactory.getConnection();
+  @Override
+  public PersonModel delete(Long id) throws RepositoryException {
+    try {
+      PersonModel person = this.getById(id);
 
-            String sql = "UPDATE person "
-                    + "   SET firstname = ?, "
-                    + "       lastname = ?, "
-                    + "       street = ?, "
-                    + "       postalcode = ?, "
-                    + "       city = ?, "
-                    + "       birthday = ? "
-                    + " WHERE id = ?;";
+      Connection connection = ConnectionFactory.getConnection();
 
-            PreparedStatement pstmt = connection.prepareStatement(sql);
+      String sql = "DELETE FROM person WHERE id = ?";
 
-            pstmt.setString(1, person.getFirstName());
-            pstmt.setString(2, person.getLastName());
-            pstmt.setString(3, person.getStreet());
-            pstmt.setInt(4, person.getPostalCode());
-            pstmt.setString(5, person.getCity());
-            pstmt.setDate(6, java.sql.Date.valueOf(person.getBirthday()));
-            pstmt.setLong(7, person.getId());
-            pstmt.executeUpdate();
+      PreparedStatement pstmt = connection.prepareStatement(sql);
+      pstmt.setLong(1, id);
+      pstmt.executeUpdate();
 
-            pstmt.close();
-            connection.close();
+      pstmt.close();
+      connection.close();
 
-        } catch (ClassNotFoundException | SQLException ex) {
-            Logger.getLogger(PersonRepository.class.getName()).log(Level.SEVERE, null, ex);
-            throw new RepositoryException(ex);
-        }
+      return person;
+    } catch (ClassNotFoundException | SQLException ex) {
+      Logger.getLogger(PersonRepository.class.getName()).log(Level.SEVERE, null, ex);
+      throw new RepositoryException(ex);
     }
+  }
 
-    @Override
-    public PersonModel delete(Long id) throws RepositoryException {
-        try {
-            PersonModel person = this.getById(id);
+  @Override
+  public PersonModel getById(Long id) throws RepositoryException {
+    try {
+      Connection connection = ConnectionFactory.getConnection();
 
-            Connection connection = ConnectionFactory.getConnection();
+      String sql = "SELECT * FROM person WHERE id = ?";
 
-            String sql = "DELETE FROM person WHERE id = ?";
+      PreparedStatement pstmt = connection.prepareStatement(sql);
+      pstmt.setLong(1, id);
+      ResultSet rs = pstmt.executeQuery();
 
-            PreparedStatement pstmt = connection.prepareStatement(sql);
-            pstmt.setLong(1, id);
-            pstmt.executeUpdate();
+      PersonModel person = null;
+      if (rs.next()) {
+        person = this.resultSetToPerson(rs);
+      }
 
-            pstmt.close();
-            connection.close();
+      rs.close();
+      pstmt.close();
+      connection.close();
 
-            return person;
-        } catch (ClassNotFoundException | SQLException ex) {
-            Logger.getLogger(PersonRepository.class.getName()).log(Level.SEVERE, null, ex);
-            throw new RepositoryException(ex);
-        }
+      return person;
+    } catch (ClassNotFoundException | SQLException ex) {
+      Logger.getLogger(PersonRepository.class.getName()).log(Level.SEVERE, null, ex);
+      throw new RepositoryException(ex);
     }
+  }
 
-    @Override
-    public PersonModel getById(Long id) throws RepositoryException {
-        try {
-            Connection connection = ConnectionFactory.getConnection();
+  @Override
+  public List<PersonModel> listAll() throws RepositoryException {
+    try {
+      Connection connection = ConnectionFactory.getConnection();
 
-            String sql = "SELECT * FROM person WHERE id = ?";
+      String sql = "SELECT * FROM person ORDER BY firstname, lastname;";
 
-            PreparedStatement pstmt = connection.prepareStatement(sql);
-            pstmt.setLong(1, id);
-            ResultSet rs = pstmt.executeQuery();
+      PreparedStatement pstmt = connection.prepareStatement(sql);
+      ResultSet rs = pstmt.executeQuery();
 
-            PersonModel person = null;
-            if (rs.next()) {
-                person = this.resultSetToPerson(rs);
-            }
+      List<PersonModel> listAll = new ArrayList<>();
 
-            rs.close();
-            pstmt.close();
-            connection.close();
+      while (rs.next()) {
+        PersonModel person = resultSetToPerson(rs);
+        listAll.add(person);
+      }
 
-            return person;
-        } catch (ClassNotFoundException | SQLException ex) {
-            Logger.getLogger(PersonRepository.class.getName()).log(Level.SEVERE, null, ex);
-            throw new RepositoryException(ex);
-        }
+      rs.close();
+      pstmt.close();
+      connection.close();
+
+      return listAll;
+    } catch (ClassNotFoundException | SQLException ex) {
+      Logger.getLogger(PersonRepository.class.getName()).log(Level.SEVERE, null, ex);
+      throw new RepositoryException(ex);
     }
-
-    @Override
-    public List<PersonModel> listAll() throws RepositoryException {
-        try {
-            Connection connection = ConnectionFactory.getConnection();
-
-            String sql = "SELECT * FROM person ORDER BY firstname, lastname;";
-
-            PreparedStatement pstmt = connection.prepareStatement(sql);
-            ResultSet rs = pstmt.executeQuery();
-
-            List<PersonModel> listAll = new ArrayList<>();
-
-            while (rs.next()) {
-                PersonModel person = resultSetToPerson(rs);
-                listAll.add(person);
-            }
-
-            rs.close();
-            pstmt.close();
-            connection.close();
-
-            return listAll;
-        } catch (ClassNotFoundException | SQLException ex) {
-            Logger.getLogger(PersonRepository.class.getName()).log(Level.SEVERE, null, ex);
-            throw new RepositoryException(ex);
-        }
-    }
+  }
 
 }

@@ -1,21 +1,23 @@
 package br.cefetmg.address.CLI.subapps;
 
+import br.cefetmg.address.CLI.AppIO;
 import br.cefetmg.address.CLI.CLIApp;
-import br.cefetmg.address.CLI.MainApp;
 
 public class AjudaApp implements CLIApp {
 
-    @Override
-    public void run(MainApp main, String[] params) {
-        String ajudaStr = "Comandos:\n"
-                + "\th: ajuda"
-                + "\tq: sair"
-                + "\tap: adicionar pessoa"
-                + "\tdp: deletar pessoa"
-                + "\tup: atualizar pessoa"
-                + "\tlp: listar pessoas"
-                + "\top: obter pessoa por id";
+  @Override
+  public void run(String[] params) {
+    AppIO appIO = AppIO.getInstance();
 
-        System.out.println(ajudaStr);
-    }
+    String ajudaStr = "Comandos:\n"
+            + "\th: ajuda"
+            + "\tq: sair"
+            + "\tap: adicionar pessoa"
+            + "\tdp: deletar pessoa"
+            + "\tup: atualizar pessoa"
+            + "\tlp: listar pessoas"
+            + "\top: obter pessoa por id";
+
+    appIO.getOut().println(ajudaStr);
+  }
 }

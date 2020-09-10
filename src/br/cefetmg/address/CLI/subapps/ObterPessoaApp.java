@@ -1,30 +1,32 @@
 package br.cefetmg.address.CLI.subapps;
 
+import br.cefetmg.address.CLI.AppIO;
 import br.cefetmg.address.CLI.CLIApp;
-import br.cefetmg.address.CLI.MainApp;
 import br.cefetmg.address.models.PersonModel;
-import br.cefetmg.address.repository.RepositoryException;
 import br.cefetmg.address.repository.PersonRepository;
+import br.cefetmg.address.repository.RepositoryException;
 
 public class ObterPessoaApp implements CLIApp {
 
-    @Override
-    public void run(MainApp main, String[] params) {
-        Long id = Long.parseLong(main.query("Id:"));
+  @Override
+  public void run(String[] params) {
+    AppIO appIO = AppIO.getInstance();
 
-        try {
-            PersonRepository pdbm = new PersonRepository();
-            PersonModel person = pdbm.getById(id);
+    Long id = Long.parseLong(appIO.query("Id:"));
 
-            if (person == null) {
-                System.out.println("Pessoa não existe!");
-                return;
-            }
+    try {
+      PersonRepository pdbm = new PersonRepository();
+      PersonModel person = pdbm.getById(id);
 
-            System.out.println(person);
-        } catch (RepositoryException ex) {
-            System.out.println(ex.getStackTrace());
-        }
+      if (person == null) {
+        appIO.getOut().println("Pessoa não existe!");
+        return;
+      }
+
+      appIO.getOut().println(person);
+    } catch (RepositoryException ex) {
+      appIO.getOut().println(ex.getStackTrace());
     }
+  }
 
 }
