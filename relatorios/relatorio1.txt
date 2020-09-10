@@ -67,7 +67,7 @@ Classe com métodos estáticos para operações genéricas de uso geral. Segue o
 
 ## `br.cefetmg.address.CLI`
 
-Pacote responsável pelo abrigamento da interface gráfica do programa por meio da linha de comando. Segue o padrão builder, uma vez que o app principal é composto por subapps adicionáveis e, esses subapps **podem** (não foi necessário, ainda) ter também seus próprios subapps.
+Pacote responsável pelo abrigamento da interface gráfica do programa por meio da linha de comando. O app principal é composto por subapps adicionáveis e, esses subapps **podem** (não foi necessário, ainda) ter também seus próprios subapps.
 
 ### Interface `CLIApp`
 
