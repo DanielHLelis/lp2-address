@@ -62,6 +62,6 @@ pom.xml.tag
 
 !/lib/**/*.jar
 
-# Relatorios
-/relatorios
-!/relatorios/**.md
+# Relatorios build files
+
+/relatorios/dist
