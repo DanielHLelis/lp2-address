@@ -55,6 +55,9 @@ release.properties
 pom.xml.releaseBackup
 pom.xml.tag
 
+# Out folder
+/out
+
 # Enable lib
 
 !/lib/**/*.jar
