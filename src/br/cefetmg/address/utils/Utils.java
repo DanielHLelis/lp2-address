@@ -5,6 +5,7 @@ import java.util.stream.Collectors;
 
 public class Utils {
 
+    private Utils(){}
 
     public static String stringOr(Object a, Object b) {
         if (a == null || a.toString().replaceAll("\\s", "").equals("")) {
