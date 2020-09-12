@@ -2,6 +2,12 @@ package br.cefetmg.address.models;
 
 import java.time.LocalDate;
 
+/**
+ * data representation of a person
+ *
+ * @author Daniel H. Lelis
+ * @author Ana Luisa
+ */
 public class PersonModel extends Model {
 
   private Long id;
@@ -12,10 +18,19 @@ public class PersonModel extends Model {
   private String city;
   private LocalDate birthday;
 
+  /**
+   * creates an instance with only the names set as empty strings
+   */
   public PersonModel() {
     this("", "");
   }
 
+  /**
+   * create an instance with only the names set
+   *
+   * @param firstName person's first name
+   * @param lastName person's last name
+   */
   public PersonModel(String firstName, String lastName) {
     this.firstName = firstName;
     this.lastName = lastName;
@@ -84,11 +99,13 @@ public class PersonModel extends Model {
 
   @Override
   public int hashCode() {
+    // Hashes the ID, since it should be unique
     return Long.hashCode(this.id);
   }
 
   @Override
   public boolean equals(Object obj) {
+    // Checks if its a PersonModel and then compares the id, since it should be unique
     if (obj instanceof PersonModel) {
       return ((PersonModel) obj).getId().equals(this.getId());
     }
