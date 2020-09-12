@@ -11,6 +11,9 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+/**
+ * Manages the persistence of {@link PersonModel}
+ */
 public class PersonRepository implements Repository<PersonModel> {
 
   private PersonModel resultSetToPerson(ResultSet rs) throws SQLException {

@@ -1,5 +1,8 @@
 package br.cefetmg.address.repository;
 
+/**
+ * Wrapper exception for any persistence related exception
+ */
 public class RepositoryException extends Exception {
   public RepositoryException() {
   }

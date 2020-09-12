@@ -6,17 +6,11 @@ import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
 
-/*
-TO-DO
-
-- Adicionar arquivo .conf e/ou variável
-*/
-
 public class ConnectionFactory {
 
-  private final static String dbDriver = "org.postgresql.Driver";
-  private final static String protocol = "jdbc:postgresql";
-  private final static String urlParams = "useUnicode=true&amp;characterEncoding=utf8";
+  private final static String dbDriver = "org.postgresql.Driver"; // The driver class to use
+  private final static String protocol = "jdbc:postgresql"; // The driver protocol
+  private final static String urlParams = "useUnicode=true&amp;characterEncoding=utf8"; // URL params
 
   private final static String DEFAULT_HOST = "localhost";
   private final static String DEFAULT_PORT = "5432";
@@ -72,6 +66,13 @@ public class ConnectionFactory {
     return params;
   }
 
+  /**
+   * Return's a database connection based on the environment configuration
+   *
+   * @return the database connection
+   * @throws ClassNotFoundException if the driver isn't present
+   * @throws SQLException from {@link DriverManager}
+   */
   public static Connection getConnection() throws ClassNotFoundException, SQLException {
     Class.forName(dbDriver);
     return DriverManager.getConnection(getUrl(), PARAMS.get("user"), PARAMS.get("pass"));
