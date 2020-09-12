@@ -3,11 +3,21 @@ package br.cefetmg.address.utils;
 import java.util.*;
 import java.util.stream.Collectors;
 
+/**
+ * utilities zeroton class
+ */
 public class Utils {
 
   private Utils() {
   }
 
+  /**
+   * Somewhat replicates the or operation between 2 strings present in other programming languages
+   *
+   * @param a
+   * @param b
+   * @return a || b
+   */
   public static String stringOr(Object a, Object b) {
     if (a == null || a.toString().replaceAll("\\s", "").equals("")) {
       if (b == null) {
@@ -19,6 +29,12 @@ public class Utils {
     return a.toString();
   }
 
+  /**
+   * Creates a table representation of a given matrix
+   *
+   * @param df square matrix where each line is a column of the table
+   * @return table representing the df
+   */
   public static String tablify(List<List<String>> df) {
     ArrayList<Integer> maxLengths = new ArrayList<>(df.stream().map(l -> Collections.max(l.stream().map(String::length).collect(Collectors.toList()))).collect(Collectors.toList()));
 
@@ -58,12 +74,24 @@ public class Utils {
     return out.toString();
   }
 
+  /**
+   * Creates a table representation of a given matrix
+   *
+   * @param df square matrix where each line is a column of the table
+   * @return table representing the df
+   */
   public static String tablify(String[][] df) {
     List<List<String>> newDf = Arrays.stream(df).map(Arrays::asList).collect(Collectors.toList());
 
     return tablify(newDf);
   }
 
+  /**
+   * Creates a table representation of a given map
+   *
+   * @param df map where each key is a column
+   * @return table representing the df
+   */
   public static String tablify(Map<String, List<Object>> df) {
     List<List<String>> newDf = new ArrayList<>();
 
