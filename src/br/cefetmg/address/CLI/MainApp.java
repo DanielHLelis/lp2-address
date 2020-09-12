@@ -5,6 +5,9 @@ import br.cefetmg.address.CLI.subapps.*;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * The CLI entry point
+ */
 public class MainApp implements CLIApp {
   public static void main(String[] args) {
     (new MainApp()).run(args);

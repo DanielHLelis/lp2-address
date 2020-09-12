@@ -6,6 +6,9 @@ import br.cefetmg.address.models.PersonModel;
 import br.cefetmg.address.repository.PersonRepository;
 import br.cefetmg.address.repository.RepositoryException;
 
+/**
+ * CLIApp to recover a single person from persistence
+ */
 public class ObterPessoaApp implements CLIApp {
 
   @Override

@@ -8,6 +8,9 @@ import br.cefetmg.address.repository.RepositoryException;
 
 import java.time.LocalDate;
 
+/**
+ * CLIApp to add a person to persistence
+ */
 public class AdicionarPessoaApp implements CLIApp {
 
   @Override

@@ -3,6 +3,9 @@ package br.cefetmg.address.CLI.subapps;
 import br.cefetmg.address.CLI.AppIO;
 import br.cefetmg.address.CLI.CLIApp;
 
+/**
+ * CLIApp to print the help guide
+ */
 public class AjudaApp implements CLIApp {
 
   @Override

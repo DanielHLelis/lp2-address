@@ -9,6 +9,9 @@ import br.cefetmg.address.utils.Utils;
 
 import java.time.LocalDate;
 
+/**
+ * CLIApp to update a person already in persistence
+ */
 public class AtualizarPessoaApp implements CLIApp {
   @Override
   public void run(String[] params) {

@@ -5,6 +5,9 @@ import br.cefetmg.address.CLI.CLIApp;
 import br.cefetmg.address.repository.PersonRepository;
 import br.cefetmg.address.repository.RepositoryException;
 
+/**
+ * CLIApp that removes a person from persistence
+ */
 public class DeletarPessoaApp implements CLIApp {
 
   @Override

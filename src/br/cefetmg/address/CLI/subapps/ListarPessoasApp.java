@@ -12,6 +12,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
+/**
+ * CLIApp to list all persons in persistence
+ */
 public class ListarPessoasApp implements CLIApp {
 
   @Override
