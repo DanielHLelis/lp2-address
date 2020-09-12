@@ -11,7 +11,7 @@ import java.time.LocalDate;
 /**
  * CLIApp to add a person to persistence
  */
-public class AdicionarPessoaApp implements CLIApp {
+public class AddPersonApp implements CLIApp {
 
   @Override
   public void run(String[] params) {

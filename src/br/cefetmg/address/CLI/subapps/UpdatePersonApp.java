@@ -12,7 +12,7 @@ import java.time.LocalDate;
 /**
  * CLIApp to update a person already in persistence
  */
-public class AtualizarPessoaApp implements CLIApp {
+public class UpdatePersonApp implements CLIApp {
   @Override
   public void run(String[] params) {
     AppIO appIO = AppIO.getInstance();

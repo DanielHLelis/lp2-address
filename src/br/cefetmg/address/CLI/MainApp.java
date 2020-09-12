@@ -19,12 +19,12 @@ public class MainApp implements CLIApp {
 
     Map<String, CLIApp> apps = new HashMap<>();
 
-    apps.put("h", new AjudaApp());
-    apps.put("ap", new AdicionarPessoaApp());
-    apps.put("dp", new DeletarPessoaApp());
-    apps.put("up", new AtualizarPessoaApp());
-    apps.put("op", new ObterPessoaApp());
-    apps.put("lp", new ListarPessoasApp());
+    apps.put("h", new HelpApp());
+    apps.put("ap", new AddPersonApp());
+    apps.put("dp", new DeletePersonApp());
+    apps.put("up", new UpdatePersonApp());
+    apps.put("op", new GetPersonApp());
+    apps.put("lp", new ListPersonsApp());
 
     while (true) {
       String command = appIO.query("Digite o comando (h para ajuda):");

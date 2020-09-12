@@ -8,7 +8,7 @@ import br.cefetmg.address.repository.RepositoryException;
 /**
  * CLIApp that removes a person from persistence
  */
-public class DeletarPessoaApp implements CLIApp {
+public class DeletePersonApp implements CLIApp {
 
   @Override
   public void run(String[] params) {

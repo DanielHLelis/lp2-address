@@ -9,7 +9,7 @@ import br.cefetmg.address.repository.RepositoryException;
 /**
  * CLIApp to recover a single person from persistence
  */
-public class ObterPessoaApp implements CLIApp {
+public class GetPersonApp implements CLIApp {
 
   @Override
   public void run(String[] params) {

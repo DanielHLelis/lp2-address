@@ -6,7 +6,7 @@ import br.cefetmg.address.CLI.CLIApp;
 /**
  * CLIApp to print the help guide
  */
-public class AjudaApp implements CLIApp {
+public class HelpApp implements CLIApp {
 
   @Override
   public void run(String[] params) {
