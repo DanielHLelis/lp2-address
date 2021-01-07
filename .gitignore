@@ -65,3 +65,7 @@ pom.xml.tag
 # Relatorios build files
 
 /relatorios/dist
+
+# Gradle
+
+.gradle/
