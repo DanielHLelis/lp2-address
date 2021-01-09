@@ -3,7 +3,6 @@ author: ["Daniel H. Lelis", "Ana Luisa"]
 date: "10/09/2020"
 ---
 
-
 # Modificações
 
 ## Removidos
@@ -58,7 +57,7 @@ Implementa a _interface_ `Repository`.
 
 ### `Utils`
 
-Classe com métodos estáticos para operações genéricas de uso geral. Segue o padrão singleton (*zeroton*), já que não pode ser instanciada.
+Classe com métodos estáticos para operações genéricas de uso geral. Segue o padrão singleton (_zeroton_), já que não pode ser instanciada.
 
 ## `br.cefetmg.address.CLI`
 
@@ -70,7 +69,7 @@ Define uma sub-aplicação/comando de CLI.
 
 ### `MainApp`
 
-Ponto de entrada da CLI, responsável pela chamada dos `subapps`. 
+Ponto de entrada da CLI, responsável pela chamada dos `subapps`.
 
 ### `AppIO`
 
