@@ -11,13 +11,20 @@ Esse repositório conterá o desenvolvimento da atividade realizada por:
 
 - Java 14+
   - Essa é a versão alva\o do Java, mas está sendo evitado o uso recursos anteriores ao Java 9
-- Netbeans 11+
-  - IntelliJ também funcionará
 - PostgreSQL 12
 
 ## Build & Run
 
-Para compilar e executar o código, basta utilizar a ferramenta já integrada à IDE utilizada. Importante verificar (principalmente no IntelliJ) se o SDK/JDK e a `Language Level` estão na versão certa.
+Para compilar e executar o código, basta utilizar o Gradle. Segue uma lista de comandos úteis:
+
+- `./gradlew run -q --console=plain`
+  - Executa a aplicação sem as saídas padrões do Gradle no console
+- `./gradlew test`
+  - Executa os testes (pode causar alterações na indexação do BD e mudanças nos registros em alguns casos de falha)
+- `./gradlew clean`
+  - Limpar os arquivos compilados
+
+No caso do Windows, substituir `./gradlew` por `.\gradlew.bat`
 
 ### SQL
 
@@ -33,17 +40,14 @@ Os seguintes parâmetros do DBMS (_Sistema Gerenciador de Bancos de Dados_) são
 - `DB_USER`: Usuário do DBMS (default: postgres)
 - `DB_PASS`: Senha do DBMS (default: postgres)
 
-#### Netbeans
-
-No Netbeans, para modificar as variáveis de ambiente, recomenda-se executá-lo pela linha de comando.
-
-#### IntelliJ
-
-No IntelliJ, para modificar as variáveis de ambiente, recomenda-se alterar as configurações de `Run & Build` do projeto.
+(Também é possível modificar os valores default no código, mas não é recomendável em caso de colaboração com o projeto)
 
 ## Dependências
 
-- JDBC do PostgreSQL (já presente no repo)
+Pode ser visto com mais detalhes no arquivo `build.gradle`
+
+- PostgreSQL Connector
+- JUnit 5
 
 ## Relatórios
 
