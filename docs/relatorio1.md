@@ -18,7 +18,7 @@ A classe estava dotada de muitas responsabilidades, dentre elas:
 
 Por conta disso, ela foi _completamente_ deletada, distribuindo-se suas responsabilidades para demais classes.
 
-## `br.cefetmg.address.models`
+## `br.cefetmg.address.core.model`
 
 Pacote de todos os modelos.
 
