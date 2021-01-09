@@ -1,17 +1,21 @@
-package br.cefetmg.address.repository;
+package br.cefetmg.address.core.model;
 
-import br.cefetmg.address.core.model.dao.PersonDao;
+import br.cefetmg.address.core.model.dao.ConnectionFactory;
 import br.cefetmg.address.core.model.dao.DaoException;
+import br.cefetmg.address.core.model.dao.PersonDao;
 import br.cefetmg.address.core.model.domain.Person;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
 import java.util.List;
 
-public class PersonDaoTest {
+public class PersonTest {
 
-  void attributeCheck(Person person, Person person2) {
+
+  void personIdentityCheck(Person person, Person person2) {
+    Assertions.assertEquals(person.getId(), person2.getId(), "ID integrity");
     Assertions.assertEquals(person.getFirstName(), person2.getFirstName(), "First Name integrity");
     Assertions.assertEquals(person.getLastName(), person2.getLastName(), "Last Name integrity");
     Assertions.assertEquals(person.getBirthday(), person2.getBirthday(), "Birthday integrity");
@@ -21,6 +25,13 @@ public class PersonDaoTest {
   }
 
   @Test
+  @Order(1)
+  void connectionTest(){
+    Assertions.assertDoesNotThrow(ConnectionFactory::getConnection, "ConnectionFactory exception check");
+  }
+
+  @Test
+  @Order(2)
   void persistenceBehaviorTest() throws DaoException {
     // Person creation
     Person person = new Person("Nome Nome2", "Sobrenome Sobrenome2");
@@ -44,7 +55,7 @@ public class PersonDaoTest {
     Assertions.assertEquals(person, person2, "Object defined equality");
 
     // Data integrity
-    attributeCheck(person, person2);
+    personIdentityCheck(person, person2);
 
     // Updating
     person2.setStreet("Al. Campinas");
@@ -52,7 +63,7 @@ public class PersonDaoTest {
 
     Person person3 = personRepository.getById(person.getId());
 
-    attributeCheck(person2, person3);
+    personIdentityCheck(person2, person3);
 
     // Removal
     personRepository.delete(person.getId());
@@ -72,5 +83,17 @@ public class PersonDaoTest {
 
     personRepository.delete(person.getId());
     personRepository.delete(person3.getId());
+  }
+
+  @Test
+  @Order(3)
+  void emptyPerson() throws DaoException{
+    PersonDao personDao = new PersonDao();
+    Person person = new Person();
+
+    personDao.insert(person);
+    Assertions.assertNotNull(person.getId());
+
+    personDao.delete(person.getId());
   }
 }

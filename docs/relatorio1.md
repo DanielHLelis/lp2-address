@@ -32,7 +32,7 @@ Contém a única responsabilidade de representar os dados e lógicas de negócio
 
 Herda da classe `Model`.
 
-## `br.cefetmg.address.repository`
+## `br.cefetmg.address.core.model`
 
 Isola a responsabilidade de persistência dos modelos, seguindo um padrão semelhante ao _facade_.
 
