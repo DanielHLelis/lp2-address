@@ -3,11 +3,9 @@ plugins {
   id 'idea'
 }
 
-java {
-	toolchain {
-		sourceCompatibility = JavaVersion.VERSION_12
-	}
-}
+sourceCompatibility = 12
+targetCompatibility = 12
+
 
 ext {
   javaMainClass = 'br.cefetmg.address.cli.controller.MainController'
