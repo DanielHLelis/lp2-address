@@ -1,1 +1,3 @@
 rootProject.name = 'AddressApp'
+include 'server'
+include 'client'

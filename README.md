@@ -17,15 +17,26 @@ Esse repositório conterá o desenvolvimento da atividade realizada por:
 
 Para compilar e executar o código, basta utilizar o Gradle. Segue uma lista de comandos úteis:
 
-- `./gradlew run -q --console=plain`
-  - Executa a aplicação sem as saídas padrões do Gradle no console
-- `./gradlew test`
+_Obs:_ No caso do **Windows**, substituir `./gradlew` por `.\gradlew.bat`
+
+## Servidor
+
+- `./gradlew server:run -q --console=plain`
+  - Executa o servidor em `localhost:11337`
+- `./gradlew client:test`
   - Executa os testes (pode causar alterações na indexação do BD e mudanças nos registros em alguns casos de falha)
-- `./gradlew clean`
+- `./gradlew client:clean`
   - Limpar os arquivos compilados
 
-No caso do Windows, substituir `./gradlew` por `.\gradlew.bat`
+## Cliente
 
+- `./gradlew client:run -q --console=plain`
+  - Executa a aplicação sem as saídas padrões do Gradle no console
+- `./gradlew client:test`
+  - Executa os testes
+- `./gradlew client:clean`
+  - Limpar os arquivos compilados
+  
 ### SQL
 
 **Importante:** antes de rodar a aplicação pela primeira vez, será necessário criar o banco de dados baseando-se no script SQL presente em `sql`.

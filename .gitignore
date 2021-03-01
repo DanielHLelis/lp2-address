@@ -70,7 +70,7 @@ pom.xml.tag
 
 .gradle
 **/build/
-!src/**/build/
+!server/src/**/build/
 
 # Ignore Gradle GUI config
 gradle-app.setting
